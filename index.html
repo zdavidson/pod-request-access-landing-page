@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <link rel="stylesheet" href="scss/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <title>Frontend Mentor | Pod request access landing page</title>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const email = document.querySelector("#email");
+      const noEmailAlert = document.querySelector("#no-email-alert");
+      const incorrectFormatAlert = document.querySelector("#incorrect-format-alert");
+      const mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+      noEmailAlert.style.display = "none";
+      incorrectFormatAlert.style.visibility = "hidden";
+
+      noEmailAlert.style.color = "red";
+      incorrectFormatAlert.style.color = "red";
+      
+      // Create text alert
+      document.querySelector("#submit").onclick = () => {
+        if (!email.value.match(mailformat)) {
+          if (!email.value.length > 0) {
+            noEmailAlert.style.display = "block";
+          } else {
+            incorrectFormatAlert.style.visibility = "visible";
+          }
+        }
+      }
+
+      // Clear alert
+      email.oninput = () => {
+        noEmailAlert.style.display = "none";
+        incorrectFormatAlert.style.visibility = "hidden";
+      }
+
+      return false;
+    });
+
+  </script>
+</head>
+<body>
+  <img src="assets/desktop/logo.svg">
+  <h1><span class="green-text">Publish your podcasts</span> everywhere.</h1>
+
+  <p>Upload your audio to Pod with a single click. We’ll then distribute your podcast to Spotify, 
+    Apple Podcasts, Google Podcasts, Pocket Casts and more!</p>
+
+    <div class="container">
+      <img id="spotify" src="/assets/desktop/spotify.svg" alt="spotify-logo">
+      <img id="apple" src="/assets/desktop/apple-podcast.svg" alt="apple-podcasts-logo">
+      <img id="google" src="/assets/desktop/google-podcasts.svg" alt="google-podcasts-logo">
+      <img id="pocket" src="/assets/desktop/pocket-casts.svg" alt="pocket-casts-logo">
+      <input id="email" placeholder="Email Address" type="text">
+      <input id="submit" value="Request access" type="submit">
+      <p id="no-email-alert">Oops! Please add your email</p>
+      <p id="incorrect-format-alert">Oops! Please check your email</p>
+    </div>
+
+</body>
+</html>
