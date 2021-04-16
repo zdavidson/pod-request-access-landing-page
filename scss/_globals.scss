@@ -1,5 +1,5 @@
 body {
-    background-image: url(/assets/mobile/image-host.jpg);
+    background-image: url(../assets/mobile/image-host.jpg);
     // Full background tint -- mobile only
     background-color: rgba(18,23,37,.75);
     background-blend-mode: multiply;
@@ -12,17 +12,69 @@ body {
 
     text-align: center;
 
+    @include breakpoint-up(medium) {
+        background-blend-mode: normal;
+        background-color: $darkBlue;
+        background-image: url(../assets/tablet/image-host.jpg);
+        background-repeat: no-repeat;
+        background-position: top right;
+
+        padding: 2.5rem;
+
+        text-align: left;
+    }
+
+    @include breakpoint-up(large) {
+        
+        background-image: url(../assets/desktop/image-host.jpg);
+        background-position: right -30%;
+
+        padding-left: 12rem;
+        padding-top: 15rem;
+    }
+
+}
+
+input {
+    border: none;
+    border-radius: 2rem;
+    padding: 1rem;
+    margin: .4rem 0;
 }
 
 h1 {
+    font-size: 1.6rem;
     font-weight: 200;
+    line-height: 1.5;
     text-transform: uppercase;
+
+    @include breakpoint-up(medium) {
+        font-size: 2.8rem;
+        line-height: 1.25;
+        padding-top: 5rem;
+    }
+
+    @include breakpoint-up(large) {
+        font-size: 3rem;
+        margin-top: 3rem;
+        padding-top: 2rem;
+    }
 }
 
 
 p {
     color: $extraLightBlue;
     line-height: 2;
+
+    @include breakpoint-up(medium) {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        margin-right: 9rem;
+    }
+
+    @include breakpoint-up(large) {
+        margin-right: 14rem;
+    }
 }
 
 .green-text {
@@ -35,14 +87,71 @@ p {
     grid-template-areas: 
     "spotify apple google pocket"
     "email email email email"
-    "submit submit submit submit";
+    "submit submit submit submit"
+    "noEmail noEmail noEmail noEmail"
+    "wrongEmail wrongEmail wrongEmail wrongEmail";
+
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 
     align-items: center;
+
+
+    @include breakpoint-up(medium) {
+        grid-template-areas: 
+        "email email email submit"
+        "noEmail noEmail noEmail noEmail"
+        "wrongEmail wrongEmail wrongEmail wrongEmail"
+        "spotify apple google pocket";
+        
+        width: 85%;
+    }
+
+    @include breakpoint-up(large) {
+
+        width: 70%;
+    }
 
     img {
         width: 90%;
     }
     
+}
+
+.bgColor {
+    @include breakpoint-up(medium) {
+        background-color: $darkBlue;
+        width: 90%;
+    }
+
+    @include breakpoint-up(large) {
+        padding-bottom: 3rem;
+        position: fixed;
+        transform: translateY(-20%);
+        width: 48%;
+    }
+}
+
+#logo {
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    width: 30%;
+
+    @include breakpoint-up(medium) {
+        margin-bottom: 7rem;
+        margin-top: 1rem;
+        width: 20%;
+    }
+
+    @include breakpoint-up(large) {
+        width: 10%;
+        margin-top: 0;
+        margin-bottom: 0;
+        transform: translateY(-350%);
+    }
+}
+
+#description {
+    margin-bottom: 2rem;
 }
 
 #spotify {
@@ -62,9 +171,65 @@ p {
 }
 
 #email {
+    background-color: $mediumBlue;
+    color: $white;
     grid-area: email;
+    margin-top: 3rem;
+
+    @include breakpoint-up(medium) {
+        margin-top: .4rem;
+        padding: 1.4rem;
+    }
+    
+    @include breakpoint-up(large) {
+        padding: 1.2rem;
+    }
 }
 
 #submit {
+    background-color: $green;
     grid-area: submit;
+
+    @include breakpoint-up(medium) {
+        transform: translateX(-102%);
+    }
+
+    @include breakpoint-up(large) {
+        padding: 1rem;
+    }
+}
+
+#no-email-alert {
+    grid-area: noEmail;
+    line-height: 1;
+
+    @include breakpoint-up(large) {
+        bottom: 6rem;
+        position: fixed;
+    }
+}
+
+#incorrect-format-alert {
+    grid-area: wrongEmail;
+    line-height: 1;
+
+    @include breakpoint-up(medium) {
+        margin-right: 1rem;
+    }
+}
+
+#dots {
+    display: none;
+
+    @include breakpoint-up(medium) {
+        display: block;
+
+        bottom: 0;
+        position:fixed;
+    }
+
+    @include breakpoint-up(large) {
+        bottom: 2rem;
+        right: 0;
+    }
 }
